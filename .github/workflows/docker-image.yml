@@ -30,7 +30,10 @@ jobs:
       run: echo "Karthik@142" | docker login --username "karthik142" --password-stdin
 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag karthik142/elibrary:$(date +%s)
+      run: docker build . --file Dockerfile --tag karthik142/elibrary:elibrary
+
+    - name:  Docker run image
+      run: docker run -d --name con1 -p 8080:8080 karthik142/elibrary:elibrary
 
     - name: Push Docker image to Docker Hub
-      run: docker push karthik142/elibrary:$(date +%s)
+      run: docker push karthik142/elibrary:elibrary
