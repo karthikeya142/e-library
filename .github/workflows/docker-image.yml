@@ -1,0 +1,27 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Log in to Docker Hub
+      run: echo "Karthik@142" | docker login --username "karthik142" --password-stdin
+
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag karthik142/elibrary:$(date +%s)
+
+    - name: Push Docker image to Docker Hub
+      run: docker push karthik142/elibrary:$(date +%s)
