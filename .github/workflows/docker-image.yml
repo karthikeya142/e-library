@@ -24,7 +24,7 @@ jobs:
       run: ./gradlew bootJar
 
     - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
+      uses: docker/setup-buildx-action@v2 
 
     - name: Log in to Docker Hub
       run: echo "Karthik@142" | docker login --username "karthik142" --password-stdin
